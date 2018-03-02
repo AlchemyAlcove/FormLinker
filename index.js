@@ -1,10 +1,12 @@
 const isArray = require("lodash/isArray");
+const isBoolean = require("lodash/isBoolean");
 const isEqual = require("lodash/isEqual");
 const isEmpty = require("lodash/isEmpty");
 const isNil = require("lodash/isNil");
 const isNumber = require("lodash/isNumber");
 const isObject = require("lodash/isObject");
 const set = require("lodash/set");
+const get = require("lodash/get");
 
 module.exports = class{
   constructor(options = {}) {
@@ -35,23 +37,19 @@ module.exports = class{
   }
 
   getFieldFormValue(attrName) {
-    if(isArray(this.parsedData[attrName])) {
-      return(this.parsedData[attrName]);
-    } else if(isEmpty(this.formData[attrName]) && !isNumber(this.formData[attrName])) {
+    let data = get(this.formData, attrName);
+    if(isEmpty(data) && !isBoolean(data) && !isNumber(data) && !isArray(data)) {
       return("");
-    } else {
-      return(this.formData[attrName]);
     }
+    return(data);
   }
 
   getFieldParsedValue(attrName) {
-    if(isArray(this.parsedData[attrName])) {
-      return(this.parsedData[attrName]);
-    } else if(isEmpty(this.parsedData[attrName]) && !isNumber(this.parsedData[attrName])) {
+    let data = get(this.parsedData, attrName);
+    if(isEmpty(data) && !isBoolean(data) && !isNumber(data) && !isArray(data)) {
       return("");
-    } else {
-      return(this.parsedData[attrName]);
     }
+    return(data);
   }
 
   handleFieldChange(attrName, results) {
