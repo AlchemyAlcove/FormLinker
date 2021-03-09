@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["form-linker"] = factory(require("lodash"));
+		exports["formLinker"] = factory(require("lodash"));
 	else
-		root["form-linker"] = factory(root["_"]);
+		root["formLinker"] = factory(root["_"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE_lodash__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
